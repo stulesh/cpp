@@ -62,24 +62,27 @@ void test_backward_step() {
     cout << endl << endl;
 }
 
-void test_shaker_sort() {
-    unsigned arr[] = {5, 3, 8, 6, 2, 9, 1, 4, 7};
-    unsigned size = sizeof(arr)/sizeof(arr[0]);
 
-    cout << "shaker_sort: ";
-    for (unsigned i = 0; i < size; i++) cout << arr[i] << " ";
-    cout << endl;
-
-    shaker_sort(arr, 0, size-1);
-
-    cout << "shaker_sort: ";
-    for (unsigned i = 0; i < size; i++) cout << arr[i] << " ";
-    cout << endl << endl;
+void shaker_sort_forward_only(std::vector<int>& arr, int& swap_count) {
+    unsigned left = 0;
+    unsigned right = arr.size() - 1;
+    bool swapped = true;
+    
+    while (left < right && swapped) {
+        swapped = false;
+        forward_step(arr, left, right, swap_count);
+        right--;
+        left++;
+    }
 }
 
-int main() {
-    test_forward_step();
-    test_backward_step();
-    test_shaker_sort();
-    return 0;
-}
+
+void test_both_versions(const std::vector<int>& original) {
+    std::vector<int> arr = original;
+    std::vector<int> arr = original;
+    
+    int swaps = 0;
+    int swaps_forward = 0;
+    
+    shaker_sort(arr, swaps);
+    shaker_sort_forward_only(arr, swaps);}
