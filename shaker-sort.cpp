@@ -86,3 +86,23 @@ void test_both_versions(const std::vector<int>& original) {
     
     shaker_sort(arr, swaps);
     shaker_sort_forward_only(arr, swaps);}
+
+void compare(const std::vector<int>& full, const std::vector<int>& forward) {
+    
+    bool match = true;
+    for (size_t i = 0; i < full.size(); ++i) {
+        if (full[i] != forward[i]) {
+            std::cout << "  " << i << "    |      " << full[i] << "       |      " << forward[i] << "   *\n";
+            match = false;
+        } else {
+            std::cout << "  " << i << "    |      " << full[i] << "       |      " << forward[i] << "\n";
+        }
+    }
+
+    if (match) {
+        std::cout << "True";
+    } else {
+        std::cout << "False";
+    }
+}
+
